@@ -1,3 +1,11 @@
+
+def print_board(board_to_print):
+    if not board_to_print:
+        print('No solution found')
+        return
+    for row in board_to_print:
+        print(row)
+
 def create_peg_solitaire_board():
     board = []
     for row in range(7):
@@ -14,7 +22,7 @@ def create_peg_solitaire_board():
 def check_if_board_is_solved(board):
     """Return True if there are only 1 piece left on the board, else return False"""
     peg_number = sum(x.count(1) for x in board)
-    if peg_number == 1:
+    if peg_number < 3:
         return True
     return False
 
