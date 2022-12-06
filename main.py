@@ -6,6 +6,35 @@ def print_board(board_to_print):
     for row in board_to_print:
         print(row)
 
+def print_boards(boards):
+    """print the boards in the list in reverse order"""
+    for board in reversed(boards): # since boards are stored in reverse order, we need to reverse the list
+        for row in board:   
+            print(row)  
+        print() # print a blank line between boards to make it easier to read
+
+def output_function(method, time_limit, solution_type, remaining_peg, boards, time_spent, explored_node_count, max_number_of_nodes_in_memory, failure_type):
+    print(f'Method: {method} - Time limit: {time_limit}')
+    if solution_type == 'cutoff':
+        print(f'Sub-optimal solution found with {remaining_peg} remaining pegs')
+        print(f'No Optimal solution found - {failure_type}')
+    else:
+        print(f'Optimum solution found.')
+    # board states
+    print_boards(boards)
+    
+    print(f'Time spent: {time_spent}')
+    print(f'Explored node count: {explored_node_count}')
+    print(f'Max number of nodes in memory: {max_number_of_nodes_in_memory}')
+
+def get_parents(node):
+    if node.parent is None:
+        return [node.board]
+    return [node.board] + get_parents(node.parent)
+
+def get_remaining_peg(board):
+    return sum(x.count(1) for x in board)
+
 def create_peg_solitaire_board():
     board = []
     for row in range(7):
