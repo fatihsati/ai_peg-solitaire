@@ -22,7 +22,7 @@ def create_peg_solitaire_board():
 def check_if_board_is_solved(board):
     """Return True if there are only 1 piece left on the board, else return False"""
     peg_number = sum(x.count(1) for x in board)
-    if peg_number < 3:
+    if peg_number == 1 and board[3][3] == 1:
         return True
     return False
 
