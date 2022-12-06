@@ -13,11 +13,11 @@ def main():
         node = frontier.pop(0)
         explored.append(node)
         explored_node_count += 1
-        if check_if_board_is_solved(child.board):
+        if check_if_board_is_solved(node.board):
             print('Solution found')
             print('Explored node count: ', explored_node_count)
-            print('Solution depth: ', child.depth)
-            print_board(child.board)
+            print('Solution depth: ', node.depth)
+            print_board(node.board)
             return
         moves = get_possible_moves(node.board)
         if not moves:
