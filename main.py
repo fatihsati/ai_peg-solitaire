@@ -1,27 +1,31 @@
 
-def print_board(board_to_print):
-    if not board_to_print:
-        print('No solution found')
-        return
-    for row in board_to_print:
-        print(row)
+# Fatih Satı - 150119625
+# Mehmet Selman Baysan - 150120841
+
+# Main operations of the program.
+# Creating board, calculating possible moves, moving pegs, checking if board is solved and printing the output.
 
 def print_boards(boards):
-    """print the boards in the list in reverse order"""
+    """print the boards in the list in reverse order to get the correct order, from initial board to solution board"""
     for board in reversed(boards): # since boards are stored in reverse order, we need to reverse the list
         for row in board:   
-            print(row)  
+            for each in row:
+                if each == -1:      # if the value is -1, print a space instead since -1 is used to represent out of the board.
+                    print(' ', end=' ')
+                else:
+                    print(each, end=' ')  
+            print() # print a new line after each row
         print() # print a blank line between boards to make it easier to read
 
 def output_function(method, time_limit, solution_type, remaining_peg, boards, time_spent, explored_node_count, max_number_of_nodes_in_memory, failure_type):
+    # board states
+    print_boards(boards)
     print(f'Method: {method} - Time limit: {time_limit}')
     if solution_type == 'cutoff':
         print(f'Sub-optimal solution found with {remaining_peg} remaining pegs')
         print(f'No Optimal solution found - {failure_type}')
     else:
         print(f'Optimum solution found.')
-    # board states
-    print_boards(boards)
     
     print(f'Time spent: {time_spent}')
     print(f'Explored node count: {explored_node_count}')
