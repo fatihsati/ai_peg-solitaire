@@ -20,7 +20,7 @@ def print_boards(boards):
 def output_function(method, time_limit, solution_type, remaining_peg, boards, time_spent, explored_node_count, max_number_of_nodes_in_memory, failure_type):
     # board states
     print_boards(boards)
-    print(f'Method: {method} - Time limit: {time_limit}')
+    print(f'Method: {method} - Time limit: {time_limit} seconds')
     if solution_type == 'cutoff':
         print(f'Sub-optimal solution found with {remaining_peg} remaining pegs')
         print(f'No Optimal solution found - {failure_type}')
