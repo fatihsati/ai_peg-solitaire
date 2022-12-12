@@ -74,6 +74,23 @@ def move_peg(board, start, end):
                 return new_board # return the new board
     return False # if the move is not valid, return False
 
+def return_removed_peg(moves): # return the removed pegs in the moves
+    moves_with_removed_pegs = [] # list to store the moves with removed pegs
+    for move in moves: # iterate through the moves
+        if move[0][0] == move[1][0]: # if the move is horizontal
+            if move[0][1] < move[1][1]: # if the move is right
+                moves_with_removed_pegs.append((move, (move[0][0], move[0][1] + 1))) # add the move and the removed peg to the list
+            else: # if the move is left
+                moves_with_removed_pegs.append((move, (move[0][0], move[0][1] - 1))) # add the move and the removed peg to the list
+        else: # if the move is vertical
+            if move[0][0] < move[1][0]: # if the move is down
+                moves_with_removed_pegs.append((move, (move[0][0] + 1, move[0][1]))) # add the move and the removed peg to the list
+            else: # if the move is up
+                moves_with_removed_pegs.append((move, (move[0][0] - 1, move[0][1]))) # add the move and the removed peg to the list
+    
+    moves_with_removed_pegs.sort(key=lambda x: x[1], reverse=True) # sort the list by the index of removed peg
+    return moves_with_removed_pegs
+
 def get_possible_moves(board):
     moves = [] # list to store the possible moves
     for row in range(7): # iterate through the board
@@ -87,4 +104,6 @@ def get_possible_moves(board):
                     moves.append(((row, col), (row, col - 2))) # if it is, add it to the list
                 if col < 5 and board[row][col + 1] == 1 and board[row][col + 2] == 0: # check if the move is valid
                     moves.append(((row, col), (row, col + 2))) # if it is, add it to the list
+    moves = return_removed_peg(moves) # sort the list of moves
+    moves = [i[0] for i in moves] # get only moves from the list
     return moves # return the list of possible moves

@@ -44,6 +44,7 @@ def main():
             sub_optimal_solution_node = node    # save the node for sub optimal solution
             
         moves = get_possible_moves(node.board)  # get possible moves from the current board
+        moves.reverse()
         # get possible moves and add to frontier
         for start, end in moves:    # for each possible move
             child = Board(move_peg(node.board, start, end), node, node.depth + 1)   # create a child node with the move
