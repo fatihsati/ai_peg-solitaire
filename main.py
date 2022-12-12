@@ -107,3 +107,25 @@ def get_possible_moves(board):
                     moves.append(((row, col), (row, col + 2))) # if it is, add it to the list
 
     return moves # return the list of possible moves
+
+def heuristic(moves, board):
+    boards = [] # list to store boards after the moves
+    for move in moves:
+        new_board = move_peg(board, move[0], move[1])
+        if new_board:
+            heuristic_value = average_manhattan_distance(new_board)
+            boards.append((new_board, heuristic_value))
+    boards.sort(key=lambda x: x[1], reverse=True) # sort the list by the heuristic value
+    boards = [i[0] for i in boards] # get only boards from the list
+    return boards
+
+def average_manhattan_distance(board):
+    """Return the manhattan distance of the board"""
+    peg_count = 0
+    distance = 0 # initialize the distance
+    for row in range(7): # iterate through the board
+        for col in range(7): # iterate through the board
+            if board[row][col] == 1: # if the position is a peg
+                peg_count += 1 # add 1 to the peg count
+                distance += abs(row - 3) + abs(col - 3) # add the distance to the middle of the board
+    return distance/peg_count # return the distance
