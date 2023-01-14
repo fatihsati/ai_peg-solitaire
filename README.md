@@ -1,5 +1,6 @@
 ﻿# ai_project
 
+Solving Peg Solitaire (Solo Test) with the uninformed search algorithms
 
 ## Used Algorithms
 - [x] Breadth-First Search
