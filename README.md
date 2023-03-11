@@ -11,7 +11,7 @@ An experiment of uninformed search algorithms on Peg Solitaire (Solo Test).
 
 ## Resutls
 
-The purpose of the experiment is to compare different uninformed search algorithms and be able to observe their speed, time complexity and also space complexity.
+The purpose of the experiment is to compare different uninformed search algorithms and be able to observe their speed, time complexity and also space complexity. <br/>
 None of the algorithm was able to find the solution in one hour.
 
 ### Breadth-First Search
